@@ -1,0 +1,7 @@
+[user]
+	email = nineis@163.com
+	name = nineis7
+[credential]
+	helper = store
+[safe]
+	directory = /home/nineis/ws/gpt-frontend
