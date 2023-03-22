@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://marketplace.visualstudio.com/items?itemName=benjamin-simmonds.pythoncpp-debug
+HostUrl=https://marketplace.visualstudio.com/_apis/public/gallery/publishers/benjamin-simmonds/vsextensions/pythoncpp-debug/0.3.0/vspackage

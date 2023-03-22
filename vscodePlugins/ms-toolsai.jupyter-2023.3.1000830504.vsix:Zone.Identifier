@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter
+HostUrl=https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-toolsai/vsextensions/jupyter/2023.3.1000830504/vspackage

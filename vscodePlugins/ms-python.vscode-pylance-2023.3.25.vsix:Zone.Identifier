@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance
+HostUrl=https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-python/vsextensions/vscode-pylance/2023.3.25/vspackage
