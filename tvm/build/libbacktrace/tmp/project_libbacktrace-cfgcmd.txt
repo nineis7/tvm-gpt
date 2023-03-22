@@ -1,0 +1,1 @@
+cmd='/home/nineis/ws/gpt-frontend/tvm/cmake/libs/../../3rdparty/libbacktrace/configure;--prefix=/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace;--with-pic;CC=/usr/bin/cc;CFLAGS=-O0 -g -Wall -fPIC ;LDFLAGS=;CPP=/usr/bin/cc -E;NM=/usr/bin/nm;STRIP=/usr/bin/strip;--host='

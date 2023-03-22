@@ -1,0 +1,82 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_0493e/fast && /usr/bin/make  -f CMakeFiles/cmTC_0493e.dir/build.make CMakeFiles/cmTC_0493e.dir/build
+make[1]: Entering directory '/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0493e.dir/src.c.o
+/usr/bin/cc   -O0 -g -Wall -fPIC  -DCMAKE_HAVE_LIBC_PTHREAD -o CMakeFiles/cmTC_0493e.dir/src.c.o -c /home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_0493e
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0493e.dir/link.txt --verbose=1
+/usr/bin/cc -O0 -g -Wall -fPIC  -DCMAKE_HAVE_LIBC_PTHREAD CMakeFiles/cmTC_0493e.dir/src.c.o -o cmTC_0493e 
+CMakeFiles/cmTC_0493e.dir/src.c.o: In function `main':
+/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp/src.c:11: undefined reference to `pthread_create'
+/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp/src.c:12: undefined reference to `pthread_detach'
+/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp/src.c:13: undefined reference to `pthread_cancel'
+/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp/src.c:14: undefined reference to `pthread_join'
+/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp/src.c:15: undefined reference to `pthread_atfork'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_0493e.dir/build.make:105: recipe for target 'cmTC_0493e' failed
+make[1]: *** [cmTC_0493e] Error 1
+make[1]: Leaving directory '/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp'
+Makefile:140: recipe for target 'cmTC_0493e/fast' failed
+make: *** [cmTC_0493e/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_2d2ef/fast && /usr/bin/make  -f CMakeFiles/cmTC_2d2ef.dir/build.make CMakeFiles/cmTC_2d2ef.dir/build
+make[1]: Entering directory '/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2d2ef.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -O0 -g -Wall -fPIC  -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_2d2ef.dir/CheckFunctionExists.c.o -c /usr/local/share/cmake-3.18/Modules/CheckFunctionExists.c
+Linking C executable cmTC_2d2ef
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2d2ef.dir/link.txt --verbose=1
+/usr/bin/cc -O0 -g -Wall -fPIC  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_2d2ef.dir/CheckFunctionExists.c.o -o cmTC_2d2ef  -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_2d2ef.dir/build.make:105: recipe for target 'cmTC_2d2ef' failed
+make[1]: *** [cmTC_2d2ef] Error 1
+make[1]: Leaving directory '/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp'
+Makefile:140: recipe for target 'cmTC_2d2ef/fast' failed
+make: *** [cmTC_2d2ef/fast] Error 2
+
+
+
+Performing C++ SOURCE FILE Test FILE_PREFIX_MAP_SUPPORTED failed with the following output:
+Change Dir: /home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_36221/fast && /usr/bin/make  -f CMakeFiles/cmTC_36221.dir/build.make CMakeFiles/cmTC_36221.dir/build
+make[1]: Entering directory '/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_36221.dir/src.cxx.o
+/usr/bin/c++   -std=c++17 -faligned-new -O0 -g -Wall -fPIC  -DFILE_PREFIX_MAP_SUPPORTED   -ffile-prefix-map=..=/home/nineis/ws/gpt-frontend/tvm -o CMakeFiles/cmTC_36221.dir/src.cxx.o -c /home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command line option '-ffile-prefix-map=..=/home/nineis/ws/gpt-frontend/tvm'
+CMakeFiles/cmTC_36221.dir/build.make:84: recipe for target 'CMakeFiles/cmTC_36221.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_36221.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/CMakeTmp'
+Makefile:140: recipe for target 'cmTC_36221/fast' failed
+make: *** [cmTC_36221/fast] Error 2
+
+
+Source file was:
+int main() { return 0; }
