@@ -72,6 +72,7 @@ DEFAULT_ALWAYS_LIST = [
     "greater",
     "less_equal",
     "greater_equal",
+    "equal",
     # By definition copy and cast will depend on inputs for output.
     "copy",
     "cast",

@@ -12,10 +12,9 @@ v = __import__("workloads")
 # ------------------------------- real input from imdb dataset 
 from datasets import load_dataset
 raw_datasets = load_dataset("imdb")
-
 chars = sorted(list(set(raw_datasets['test']['text'][:128])))
 vocab_size = len(chars)
-# print(vocab_size)
+
 mconf = v.GPTConfig(vocab_size, 128, n_layer=12, n_head=12, n_embd=768) # a GPT-1
 model = v.GPT(mconf)
 
@@ -24,9 +23,7 @@ input_tensor = torch.tensor([stoi[s] for s in raw_datasets['test']['text'][:128]
 # Classify
 model.eval()
 with torch.no_grad():
-    print("input_tensor", input_tensor.shape)
     outputs = model(input_tensor)
-print("outputs", outputs.shape)
 
 # ------------------------------- 生成输入tensor，负责输入进trace中flow一遍得到trace后的计算图
 # ------------------------ Creating the trace_model
@@ -35,26 +32,26 @@ traced_model.eval()
 for p in traced_model.parameters():
     p.requires_grad_(False)
 
-# ------------------------------- GPU中计算gpt模型的inference耗时
-model.cuda()
-it_c = input_tensor.cuda()
-res_pt = model(it_c)
-torch.cuda.synchronize()
+# # ------------------------------- GPU中计算gpt模型的inference耗时
+# model.cuda()
+# it_c = input_tensor.cuda()
+# res_pt = model(it_c)
+# torch.cuda.synchronize()
 
-start_time = time.time()
-for i in range(1000):
-    model(it_c)
-torch.cuda.synchronize()
+# start_time = time.time()
+# for i in range(1000):
+#     model(it_c)
+# torch.cuda.synchronize()
 
-end_time = time.time()
-print("耗时: {:.2f}秒".format(end_time - start_time))
+# end_time = time.time()
+# print("耗时: {:.2f}秒".format(end_time - start_time))
 
 # ------------------------------- 依据trace_model生成relay ir
 shape_list = [(i.debugName().split('.')[0], i.type().sizes()) for i in  list(traced_model.graph.inputs())[1:]]
-#print(shape_list) # [('input_ids', [1, 7])]
+# print(shape_list) # [('idx', [1, 128])]
 
+# ------------------------------- parse pytorch model to tvm relay ir
 import tvm.relay
-# parse pytorch model to tvm relay ir
 mod, params = tvm.relay.frontend.pytorch.from_pytorch(traced_model, shape_list, default_dtype="float32")
 mod = tvm.relay.transform.InferType()(mod) #注释中输出type信息
 
@@ -89,21 +86,24 @@ BindPass = tvm.relay.transform.function_pass(
 )
 
 mod = BindPass(mod)
-mod = tvm.relay.transform.SimplifyInference()(mod)
+
+# import sys
+# sys.stdout = open('nofuse.txt', mode = 'w',encoding='utf-8')
+# print(mod)
+
+#将inference中的一些计算简化,如：x*1->x，并且将nn.dropout, nn.layer_norm等算子分解为多个低级算子
+mod = tvm.relay.transform.SimplifyInference()(mod) 
 mod = tvm.relay.transform.FuseOps()(mod)
 mod = tvm.relay.transform.FoldConstant()(mod)
 # mod = tvm.relay.transform.CombineParallelBatchMatmul()(mod)
-mod = tvm.relay.transform.FoldConstant()(mod)
+# mod = tvm.relay.transform.FoldConstant()(mod)
 
-mod = tvm.relay.transform.ToMixedPrecision()(mod)
+# mod = tvm.relay.transform.ToMixedPrecision()(mod)
 
 mod = tvm.relay.transform.EliminateCommonSubexpr()(mod)
 mod = tvm.relay.transform.FoldConstant()(mod)
+# mod = tvm.relay.transform.FuseOps()(mod)
 
-
-# import sys
-# sys.stdout = open('infor16after.txt', mode = 'w',encoding='utf-8')
-# print(mod)
 # from tvm.relay.build_module import BuildModule
 # opt_level = 3
 # target = "llvm"
