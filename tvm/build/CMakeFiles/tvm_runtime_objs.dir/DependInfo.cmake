@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/nineis/ws/gpt-frontend/tvm/src/runtime/c_runtime_api.cc" "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/c_runtime_api.cc.o"
   "/home/nineis/ws/gpt-frontend/tvm/src/runtime/const_loader_module.cc" "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/const_loader_module.cc.o"
   "/home/nineis/ws/gpt-frontend/tvm/src/runtime/container.cc" "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/container.cc.o"
+  "/home/nineis/ws/gpt-frontend/tvm/src/runtime/contrib/papi/papi.cc" "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o"
   "/home/nineis/ws/gpt-frontend/tvm/src/runtime/contrib/random/random.cc" "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/random/random.cc.o"
   "/home/nineis/ws/gpt-frontend/tvm/src/runtime/contrib/sort/sort.cc" "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/sort/sort.cc.o"
   "/home/nineis/ws/gpt-frontend/tvm/src/runtime/cpu_device_api.cc" "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/cpu_device_api.cc.o"

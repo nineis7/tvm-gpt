@@ -753,6 +753,7 @@ tvm_EXTERNAL_OBJECTS = \
 "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/cuda/l2_cache_flush.cc.o" \
 "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/random/random.cc.o" \
 "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/sort/sort.cc.o" \
+"/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o" \
 "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_libinfo_objs.dir/src/support/libinfo.cc.o"
 
 libtvm.so: CMakeFiles/tvm_objs.dir/src/arith/analyzer.cc.o
@@ -1427,6 +1428,7 @@ libtvm.so: CMakeFiles/tvm_runtime_objs.dir/src/runtime/cuda/cuda_module.cc.o
 libtvm.so: CMakeFiles/tvm_runtime_objs.dir/src/runtime/cuda/l2_cache_flush.cc.o
 libtvm.so: CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/random/random.cc.o
 libtvm.so: CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/sort/sort.cc.o
+libtvm.so: CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o
 libtvm.so: CMakeFiles/tvm_libinfo_objs.dir/src/support/libinfo.cc.o
 libtvm.so: CMakeFiles/tvm.dir/build.make
 libtvm.so: libbacktrace/lib/libbacktrace.a
@@ -1435,6 +1437,7 @@ libtvm.so: /usr/lib/llvm-13/lib/libLLVM-13.so
 libtvm.so: /usr/local/cuda/lib64/libcudart.so
 libtvm.so: /usr/local/cuda/targets/x86_64-linux/lib/stubs/libcuda.so
 libtvm.so: /usr/local/cuda/lib64/libnvrtc.so
+libtvm.so: /usr/local/lib/libpapi.so
 libtvm.so: /usr/lib/llvm-13/lib/libLLVM-13.so
 libtvm.so: /usr/local/cuda/lib64/libcudart.so
 libtvm.so: /usr/local/cuda/targets/x86_64-linux/lib/stubs/libcuda.so

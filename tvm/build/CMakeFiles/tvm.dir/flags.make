@@ -6,5 +6,5 @@ CXX_DEFINES = -DDMLC_USE_FOPEN64=0 -DDMLC_USE_LOGGING_LIBRARY="<tvm/runtime/logg
 
 CXX_INCLUDES = -I/home/nineis/ws/gpt-frontend/tvm/include -I/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/include -isystem /home/nineis/ws/gpt-frontend/tvm/3rdparty/dlpack/include -isystem /home/nineis/ws/gpt-frontend/tvm/3rdparty/dmlc-core/include -isystem /home/nineis/ws/gpt-frontend/tvm/3rdparty/rang/include -isystem /home/nineis/ws/gpt-frontend/tvm/3rdparty/compiler-rt -isystem /home/nineis/ws/gpt-frontend/tvm/3rdparty/picojson -isystem /usr/lib/llvm-13/include
 
-CXX_FLAGS = -std=c++17 -faligned-new -O0 -g -Wall -fPIC  -g -fPIC -ffile-prefix-map=..=/home/nineis/ws/gpt-frontend/tvm
+CXX_FLAGS = -std=c++17 -faligned-new -O0 -g -Wall -fPIC  -g -fPIC -ffile-prefix-map=..=/home/nineis/ws/gpt-frontend/tvm -pthread
 

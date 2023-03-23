@@ -356,6 +356,8 @@ if ${TTY}; then
     DOCKER_FLAGS+=( --tty )
 fi
 
+DOCKER_FLAGS+=( --privileged=true )
+
 # Setup the docker name and the hostname inside the container
 if [[ ! -z "${CONTAINER_NAME}" ]]; then
     DOCKER_FLAGS+=( --name ${CONTAINER_NAME} --hostname ${CONTAINER_NAME})

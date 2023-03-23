@@ -177,6 +177,35 @@ CMakeFiles/tvm_runtime_objs.dir/src/runtime/container.cc.o: ../include/tvm/runti
 CMakeFiles/tvm_runtime_objs.dir/src/runtime/container.cc.o: ../include/tvm/runtime/serializer.h
 CMakeFiles/tvm_runtime_objs.dir/src/runtime/container.cc.o: ../src/runtime/container.cc
 
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../3rdparty/dlpack/include/dlpack/dlpack.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../3rdparty/dmlc-core/include/dmlc/common.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../3rdparty/dmlc-core/include/dmlc/endian.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../3rdparty/dmlc-core/include/dmlc/io.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../3rdparty/dmlc-core/include/dmlc/logging.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../3rdparty/dmlc-core/include/dmlc/serializer.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../3rdparty/dmlc-core/include/dmlc/thread_local.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../3rdparty/dmlc-core/include/dmlc/type_traits.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/c_runtime_api.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/container/array.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/container/base.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/container/map.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/container/optional.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/container/shape_tuple.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/container/string.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/contrib/papi.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/data_type.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/device_api.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/logging.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/memory.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/module.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/ndarray.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/object.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/packed_func.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/profiling.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/registry.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../include/tvm/runtime/serializer.h
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../src/runtime/contrib/papi/papi.cc
+
 CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/random/random.cc.o: ../3rdparty/compiler-rt/builtin_fp16.h
 CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/random/random.cc.o: ../3rdparty/dlpack/include/dlpack/dlpack.h
 CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/random/random.cc.o: ../3rdparty/dmlc-core/include/dmlc/base.h

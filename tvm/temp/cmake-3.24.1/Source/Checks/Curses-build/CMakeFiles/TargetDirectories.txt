@@ -1,0 +1,2 @@
+/home/nineis/ws/gpt-frontend/tvm/temp/cmake-3.24.1/Source/Checks/Curses-build/CMakeFiles/edit_cache.dir
+/home/nineis/ws/gpt-frontend/tvm/temp/cmake-3.24.1/Source/Checks/Curses-build/CMakeFiles/rebuild_cache.dir

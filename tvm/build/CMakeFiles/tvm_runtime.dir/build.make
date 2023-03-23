@@ -131,6 +131,7 @@ tvm_runtime_EXTERNAL_OBJECTS = \
 "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/cuda/l2_cache_flush.cc.o" \
 "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/random/random.cc.o" \
 "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/sort/sort.cc.o" \
+"/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o" \
 "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/tvm_libinfo_objs.dir/src/support/libinfo.cc.o"
 
 libtvm_runtime.so: CMakeFiles/tvm_runtime_objs.dir/src/runtime/builtin_fp16.cc.o
@@ -183,12 +184,14 @@ libtvm_runtime.so: CMakeFiles/tvm_runtime_objs.dir/src/runtime/cuda/cuda_module.
 libtvm_runtime.so: CMakeFiles/tvm_runtime_objs.dir/src/runtime/cuda/l2_cache_flush.cc.o
 libtvm_runtime.so: CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/random/random.cc.o
 libtvm_runtime.so: CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/sort/sort.cc.o
+libtvm_runtime.so: CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o
 libtvm_runtime.so: CMakeFiles/tvm_libinfo_objs.dir/src/support/libinfo.cc.o
 libtvm_runtime.so: CMakeFiles/tvm_runtime.dir/build.make
 libtvm_runtime.so: libbacktrace/lib/libbacktrace.a
 libtvm_runtime.so: /usr/local/cuda/lib64/libcudart.so
 libtvm_runtime.so: /usr/local/cuda/targets/x86_64-linux/lib/stubs/libcuda.so
 libtvm_runtime.so: /usr/local/cuda/lib64/libnvrtc.so
+libtvm_runtime.so: /usr/local/lib/libpapi.so
 libtvm_runtime.so: CMakeFiles/tvm_runtime.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Linking CXX shared library libtvm_runtime.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tvm_runtime.dir/link.txt --verbose=$(VERBOSE)

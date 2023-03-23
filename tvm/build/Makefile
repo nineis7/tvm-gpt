@@ -10630,6 +10630,33 @@ src/runtime/container.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tvm_runtime_objs.dir/build.make CMakeFiles/tvm_runtime_objs.dir/src/runtime/container.cc.s
 .PHONY : src/runtime/container.cc.s
 
+src/runtime/contrib/papi/papi.o: src/runtime/contrib/papi/papi.cc.o
+
+.PHONY : src/runtime/contrib/papi/papi.o
+
+# target to build an object file
+src/runtime/contrib/papi/papi.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tvm_runtime_objs.dir/build.make CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o
+.PHONY : src/runtime/contrib/papi/papi.cc.o
+
+src/runtime/contrib/papi/papi.i: src/runtime/contrib/papi/papi.cc.i
+
+.PHONY : src/runtime/contrib/papi/papi.i
+
+# target to preprocess a source file
+src/runtime/contrib/papi/papi.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tvm_runtime_objs.dir/build.make CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.i
+.PHONY : src/runtime/contrib/papi/papi.cc.i
+
+src/runtime/contrib/papi/papi.s: src/runtime/contrib/papi/papi.cc.s
+
+.PHONY : src/runtime/contrib/papi/papi.s
+
+# target to generate assembly for a file
+src/runtime/contrib/papi/papi.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tvm_runtime_objs.dir/build.make CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.s
+.PHONY : src/runtime/contrib/papi/papi.cc.s
+
 src/runtime/contrib/random/random.o: src/runtime/contrib/random/random.cc.o
 
 .PHONY : src/runtime/contrib/random/random.o
@@ -21560,6 +21587,9 @@ help:
 	@echo "... src/runtime/container.o"
 	@echo "... src/runtime/container.i"
 	@echo "... src/runtime/container.s"
+	@echo "... src/runtime/contrib/papi/papi.o"
+	@echo "... src/runtime/contrib/papi/papi.i"
+	@echo "... src/runtime/contrib/papi/papi.s"
 	@echo "... src/runtime/contrib/random/random.o"
 	@echo "... src/runtime/contrib/random/random.i"
 	@echo "... src/runtime/contrib/random/random.s"

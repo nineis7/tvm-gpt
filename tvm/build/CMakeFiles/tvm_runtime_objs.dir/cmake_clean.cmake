@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/tvm_runtime_objs.dir/src/runtime/c_runtime_api.cc.o"
   "CMakeFiles/tvm_runtime_objs.dir/src/runtime/const_loader_module.cc.o"
   "CMakeFiles/tvm_runtime_objs.dir/src/runtime/container.cc.o"
+  "CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o"
   "CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/random/random.cc.o"
   "CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/sort/sort.cc.o"
   "CMakeFiles/tvm_runtime_objs.dir/src/runtime/cpu_device_api.cc.o"

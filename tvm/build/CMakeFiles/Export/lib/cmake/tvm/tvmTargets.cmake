@@ -55,6 +55,7 @@ add_library(tvm::tvm SHARED IMPORTED)
 
 set_target_properties(tvm::tvm PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "DMLC_USE_LOGGING_LIBRARY=<tvm/runtime/logging.h>"
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
   INTERFACE_LINK_LIBRARIES "Threads::Threads"
 )
 
@@ -63,6 +64,7 @@ add_library(tvm::tvm_runtime SHARED IMPORTED)
 
 set_target_properties(tvm::tvm_runtime PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "DMLC_USE_LOGGING_LIBRARY=<tvm/runtime/logging.h>"
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
   INTERFACE_LINK_LIBRARIES "Threads::Threads"
 )
 

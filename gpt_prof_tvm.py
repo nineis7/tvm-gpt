@@ -8,6 +8,7 @@ from tvm.contrib import graph_executor
 import sys
 import tvm.relay
 
+
 # Import required libraries
 import torch
 print(torch.__version__)
@@ -60,28 +61,28 @@ for p in traced_model.parameters():
 
 shape_list = [(i.debugName().split('.')[0], i.type().sizes()) for i in  list(traced_model.graph.inputs())[1:]]
 mod, params = tvm.relay.frontend.pytorch.from_pytorch(traced_model, shape_list, default_dtype="float32")
-sys.stdout = open('info32.txt', mode = 'w',encoding='utf-8')
-print(mod)
+# sys.stdout = open('info32.txt', mode = 'w',encoding='utf-8')
+# print(mod)
 ######################  experiment   fp32  ######
-target = "cuda"
-with tvm.transform.PassContext(opt_level=3):
-    lib = tvm.relay.build(mod, target=target, params=params)
+# target = "cuda"
+# with tvm.transform.PassContext(opt_level=3):
+#     lib = tvm.relay.build(mod, target=target, params=params)
     
-dev = tvm.device(str(target), 0)
-module = graph_executor.GraphModule(lib["default"](dev))
+# dev = tvm.device(str(target), 0)
+# module = graph_executor.GraphModule(lib["default"](dev))
 tt_c = tokens_tensor.cpu()###################################################
-module.set_input("input_ids", tt_c)
-module.set_input(**params)
-module.run()
+# module.set_input("input_ids", tt_c)
+# module.set_input(**params)
+# module.run()
 
-start_time = time.time()
-for i in range(1000):
-    print("info32 loop i: ", i)
-    module.run()
-torch.cuda.synchronize()
+# start_time = time.time()
+# for i in range(100):
+#     print("info32 loop i: ", i)
+#     module.run()
+# torch.cuda.synchronize()
 
-end_time = time.time()
-print("耗时: {:.2f}秒".format(end_time - start_time))
+# end_time = time.time()
+# print("耗时: {:.2f}秒".format(end_time - start_time))
 
 #######################  convert to fp16  ######
 mod = tvm.relay.transform.EliminateCommonSubexpr()(mod)
@@ -92,36 +93,70 @@ BindPass = tvm.relay.transform.function_pass(
     opt_level=1,
 )
 mod = BindPass(mod)
-mod = tvm.relay.transform.SimplifyInference()(mod)
+# mod = tvm.relay.transform.SimplifyInference()(mod),
+seq = tvm.transform.Sequential(
+    [
+        tvm.relay.transform.SimplifyInference(),
+        # tvm.relay.transform.FuseOps(),
+        tvm.relay.transform.FoldConstant(),
+        # tvm.relay.transform.CombineParallelBatchMatmul()(mod),
+
+        tvm.relay.transform.ToMixedPrecision(),
+
+        tvm.relay.transform.EliminateCommonSubexpr(),
+        tvm.relay.transform.FoldConstant(),
+        tvm.relay.transform.FuseOps(),
+    ]
+)
+mod = seq(mod)
+# mod = tvm.relay.transform.SimplifyInference()(mod)
+# # mod = tvm.relay.transform.FuseOps()(mod)
+# mod = tvm.relay.transform.FoldConstant()(mod)
+# # mod = tvm.relay.transform.CombineParallelBatchMatmul()(mod)
+
+# mod = tvm.relay.transform.ToMixedPrecision()(mod)
+
+# mod = tvm.relay.transform.EliminateCommonSubexpr()(mod)
+# mod = tvm.relay.transform.FoldConstant()(mod)
 # mod = tvm.relay.transform.FuseOps()(mod)
-mod = tvm.relay.transform.FoldConstant()(mod)
-# mod = tvm.relay.transform.CombineParallelBatchMatmul()(mod)
-
-mod = tvm.relay.transform.ToMixedPrecision()(mod)
-
-mod = tvm.relay.transform.EliminateCommonSubexpr()(mod)
-mod = tvm.relay.transform.FoldConstant()(mod)
-mod = tvm.relay.transform.FuseOps()(mod)
-sys.stdout = open('infor16.txt', mode = 'w',encoding='utf-8')
-print(mod)
+# sys.stdout = open('infor16.txt', mode = 'w',encoding='utf-8')
+# print(mod)
 
 #######################  experiment   fp16  ######
 target = "cuda"
 with tvm.transform.PassContext(opt_level=3):
     lib = tvm.relay.build(mod, target=target, params=params)
     
-dev = tvm.device(str(target), 0)
-module = graph_executor.GraphModule(lib["default"](dev))
-tt_c = tt_c.cpu()###################################################
-module.set_input("input_ids", tt_c)
-module.set_input(**params)
-module.run()
+# dev = tvm.device(str(target), 0)
+# module = graph_executor.GraphModule(lib["default"](dev))
+# tt_c = tt_c.cpu()###################################################
+# module.set_input("input_ids", tt_c)
+# module.set_input(**params)
+# module.run()
 
-start_time = time.time()
-for i in range(1000):
-    print("info16 loop i: ", i)
-    module.run()
-torch.cuda.synchronize()
+# start_time = time.time()
+# for i in range(100):
+#     print("info16 loop i: ", i)
+#     module.run()
+# torch.cuda.synchronize()
 
-end_time = time.time()
-print("耗时: {:.2f}秒".format(end_time - start_time))
+# end_time = time.time()
+# print("耗时: {:.2f}秒".format(end_time - start_time))
+
+from tvm.relay.testing import mlp
+from tvm.runtime import profiler_vm
+
+target = "llvm"
+dev = tvm.cpu()
+mod, params = mlp.get_workload(1)
+
+exe = tvm.relay.vm.compile(mod, target, params=params)
+vm = profiler_vm.VirtualMachineProfiler(exe, dev)
+
+data = tvm.nd.array(np.random.rand(1, 1, 28, 28).astype("float32"), device=dev)
+report = vm.profile(
+    [data],
+    func_name="main",
+    collectors=[tvm.runtime.profiling.PAPIMetricCollector()],
+)
+print(report)

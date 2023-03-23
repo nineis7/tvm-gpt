@@ -15,7 +15,7 @@ raw_datasets = load_dataset("imdb")
 chars = sorted(list(set(raw_datasets['test']['text'][:128])))
 vocab_size = len(chars)
 
-mconf = v.GPTConfig(vocab_size, 128, n_layer=12, n_head=12, n_embd=768) # a GPT-1
+mconf = v.GPTConfig(vocab_size, 128, n_layer=2, n_head=4, n_embd=768) # a GPT-1
 model = v.GPT(mconf)
 
 stoi = { ch:i for i,ch in enumerate(chars) }
@@ -56,52 +56,52 @@ mod, params = tvm.relay.frontend.pytorch.from_pytorch(traced_model, shape_list, 
 mod = tvm.relay.transform.InferType()(mod) #注释中输出type信息
 
 # ------------------------------- 利用GPU进行Relay ir转换后的mod inference耗时
-target = "cuda"
-with tvm.transform.PassContext(opt_level=3):
-    lib = tvm.relay.build(mod, target=target, params=params)
+# target = "cuda"
+# with tvm.transform.PassContext(opt_level=3):
+#     lib = tvm.relay.build(mod, target=target, params=params)
     
-dev = tvm.device(str(target), 0)
-module = graph_executor.GraphModule(lib["default"](dev))
+# dev = tvm.device(str(target), 0)
+# module = graph_executor.GraphModule(lib["default"](dev))
 
-it = input_tensor.numpy()
-module.set_input("idx", it)
-module.set_input(**params)
-module.run()
+# it = input_tensor.numpy()
+# module.set_input("idx", it)
+# module.set_input(**params)
+# module.run()
 
-start_time = time.time()
-for i in range(1000):
-    module.run()
-torch.cuda.synchronize()
+# start_time = time.time()
+# for i in range(1000):
+#     module.run()
+# torch.cuda.synchronize()
 
-end_time = time.time()
-print("耗时: {:.2f}秒".format(end_time - start_time))
+# end_time = time.time()
+# print("耗时: {:.2f}秒".format(end_time - start_time))
 
 # ------------------------ 对relay ir进行优化，fp32->fp16
-mod = tvm.relay.transform.EliminateCommonSubexpr()(mod)
-BindPass = tvm.relay.transform.function_pass(
-    lambda fn, new_mod, ctx: tvm.relay.build_module.bind_params_by_name(
-        fn, params
-    ),
-    opt_level=1,
-)
+# mod = tvm.relay.transform.EliminateCommonSubexpr()(mod)
+# BindPass = tvm.relay.transform.function_pass(
+#     lambda fn, new_mod, ctx: tvm.relay.build_module.bind_params_by_name(
+#         fn, params
+#     ),
+#     opt_level=1,
+# )
 
-mod = BindPass(mod)
+# mod = BindPass(mod)
 
 # import sys
 # sys.stdout = open('nofuse.txt', mode = 'w',encoding='utf-8')
 # print(mod)
 
 #将inference中的一些计算简化,如：x*1->x，并且将nn.dropout, nn.layer_norm等算子分解为多个低级算子
-mod = tvm.relay.transform.SimplifyInference()(mod) 
-mod = tvm.relay.transform.FuseOps()(mod)
-mod = tvm.relay.transform.FoldConstant()(mod)
+# mod = tvm.relay.transform.SimplifyInference()(mod) 
+# mod = tvm.relay.transform.FuseOps()(mod)
+# mod = tvm.relay.transform.FoldConstant()(mod)
 # mod = tvm.relay.transform.CombineParallelBatchMatmul()(mod)
 # mod = tvm.relay.transform.FoldConstant()(mod)
 
 # mod = tvm.relay.transform.ToMixedPrecision()(mod)
 
-mod = tvm.relay.transform.EliminateCommonSubexpr()(mod)
-mod = tvm.relay.transform.FoldConstant()(mod)
+# mod = tvm.relay.transform.EliminateCommonSubexpr()(mod)
+# mod = tvm.relay.transform.FoldConstant()(mod)
 # mod = tvm.relay.transform.FuseOps()(mod)
 
 # from tvm.relay.build_module import BuildModule
@@ -117,26 +117,26 @@ mod = tvm.relay.transform.FoldConstant()(mod)
 # print(mod)
 
 # ------------------------------- 利用GPU进行Relay ir的fp32->16后的mod inference耗时
-target = "cuda"
-with tvm.transform.PassContext(opt_level=3):
-    lib = tvm.relay.build(mod, target=target, params=params)
+# target = "cuda"
+# with tvm.transform.PassContext(opt_level=3):
+#     lib = tvm.relay.build(mod, target=target, params=params)
     
-dev = tvm.device(str(target), 0)
-module = graph_executor.GraphModule(lib["default"](dev))
+# dev = tvm.device(str(target), 0)
+# module = graph_executor.GraphModule(lib["default"](dev))
 
-it = input_tensor.numpy()
-module.set_input("idx", it)
-module.set_input(**params)
-module.run()
+# it = input_tensor.numpy()
+# module.set_input("idx", it)
+# module.set_input(**params)
+# module.run()
 
-start_time = time.time()
-for i in range(1000):
-    module.run()
-torch.cuda.synchronize()
+# start_time = time.time()
+# for i in range(1000):
+#     module.run()
+# torch.cuda.synchronize()
 
-end_time = time.time()
-print("耗时: {:.2f}秒".format(end_time - start_time))
+# end_time = time.time()
+# print("耗时: {:.2f}秒".format(end_time - start_time))
 
-import sys
-sys.stdout = open('infor16after.txt', mode = 'w',encoding='utf-8')
-print(mod)
+# import sys
+# sys.stdout = open('infor16after.txt', mode = 'w',encoding='utf-8')
+# print(mod)

@@ -158,3 +158,34 @@ ls
 cd ..
 ls
 exit
+ls
+cd ..
+ls
+ls
+sudo git init
+sudo git add .
+sudo git commit -m "update"
+sudo git branch -M main
+sudo git remote add origin git@github.com:nineis7/tvm-gpt.git
+git push -u origin main
+apt-get install ssh
+sudo apt-get install ssh
+sudo apt-get install ssh
+git push -u origin main
+ssh -T git@github.com
+sudo ssh -T git@github.com
+ssh-keygen -t rsa
+cat ~/.ssh/id_rsa.pub
+ssh -T git@github.com
+git push -u origin main
+git push -u origin main
+sudo git add .
+sudo git commit -m "update"
+git push -u origin main
+git push -u origin main
+git push -u origin main
+sudo git add .
+sudo git commit -m "update"
+git push -u origin main
+git push -u origin main
+exit

@@ -726,6 +726,19 @@ CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/sort/sort.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/sort/sort.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nineis/ws/gpt-frontend/tvm/src/runtime/contrib/sort/sort.cc -o CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/sort/sort.cc.s
 
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: CMakeFiles/tvm_runtime_objs.dir/flags.make
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o: ../src/runtime/contrib/papi/papi.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o -c /home/nineis/ws/gpt-frontend/tvm/src/runtime/contrib/papi/papi.cc
+
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nineis/ws/gpt-frontend/tvm/src/runtime/contrib/papi/papi.cc > CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.i
+
+CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nineis/ws/gpt-frontend/tvm/src/runtime/contrib/papi/papi.cc -o CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.s
+
 tvm_runtime_objs: CMakeFiles/tvm_runtime_objs.dir/src/runtime/builtin_fp16.cc.o
 tvm_runtime_objs: CMakeFiles/tvm_runtime_objs.dir/src/runtime/c_runtime_api.cc.o
 tvm_runtime_objs: CMakeFiles/tvm_runtime_objs.dir/src/runtime/const_loader_module.cc.o
@@ -776,6 +789,7 @@ tvm_runtime_objs: CMakeFiles/tvm_runtime_objs.dir/src/runtime/cuda/cuda_module.c
 tvm_runtime_objs: CMakeFiles/tvm_runtime_objs.dir/src/runtime/cuda/l2_cache_flush.cc.o
 tvm_runtime_objs: CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/random/random.cc.o
 tvm_runtime_objs: CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/sort/sort.cc.o
+tvm_runtime_objs: CMakeFiles/tvm_runtime_objs.dir/src/runtime/contrib/papi/papi.cc.o
 tvm_runtime_objs: CMakeFiles/tvm_runtime_objs.dir/build.make
 
 .PHONY : tvm_runtime_objs
