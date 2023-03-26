@@ -168,11 +168,61 @@ def create_workload(net, initializer=None, seed=0):
     mod = tvm.IRModule.from_expr(net)
     mod = relay.transform.InferType()(mod)
     shape_dict = {v.name_hint: v.checked_type for v in mod["main"].params}
+    # print(mod)
+    # print(shape_dict)
     np.random.seed(seed)
     initializer = initializer if initializer else Xavier()
     params = {}
     for k, v in shape_dict.items():
         if k == "data":
+            continue
+        init_value = np.zeros(v.concrete_shape).astype(v.dtype)
+        initializer(k, init_value)
+        params[k] = tvm.nd.array(init_value, device=tvm.cpu(0))
+    return mod, params
+
+class Constant(Initializer):
+    """Constant initialization of weights. Sum of weights in the matrix is 1."""
+
+    def _init_weight(self, name, arr):
+        num_elements = reduce(lambda x, y: x * y, arr.shape)
+        arr[:] = 1.0 / num_elements
+
+
+def create_workload_gpt(mod, initializer=None, seed=0):
+    """Helper function to create benchmark image classification workload.
+
+    Parameters
+    ----------
+    net : tvm.relay.Function
+        The selected function of the network.
+
+    initializer : Initializer
+        The initializer used
+
+    seed : int
+        The seed used in initialization.
+
+    Returns
+    -------
+    mod : tvm.IRModule
+        The created relay module.
+
+    params : dict of str to NDArray
+        The parameters.
+    """
+
+    mod = relay.transform.InferType()(mod)
+    shape_dict = {v.name_hint: v.checked_type for v in mod["main"].params}
+    # print(mod)
+    # print(shape_dict)
+    np.random.seed(seed)
+    initializer = initializer if initializer else Xavier()
+    params = {}
+    for k, v in shape_dict.items():
+        if k == "input_ids":
+            continue
+        if k == "position_ids":
             continue
         init_value = np.zeros(v.concrete_shape).astype(v.dtype)
         initializer(k, init_value)

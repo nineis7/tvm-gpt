@@ -85,3 +85,4 @@ def get_workload(batch_size, num_classes=10, image_shape=(1, 28, 28), dtype="flo
     """
     net = get_net(batch_size, num_classes, image_shape, dtype)
     return create_workload(net)
+

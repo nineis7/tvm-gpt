@@ -400,7 +400,9 @@ set(BACKTRACE_ON_SEGFAULT OFF)
 # - ON: enable PAPI support. Will search PKG_CONFIG_PATH for a papi.pc
 # - OFF: disable PAPI support.
 # - /path/to/folder/containing/: Path to folder containing papi.pc.
-set(USE_PAPI /home/papi_install/lib/pkgconfig)
+# set(USE_PAPI /home/papi_install/lib/pkgconfig)
+set(USE_PAPI ON)
+# set(USE_PAPI OFF)
 
 # Whether to use GoogleTest for C++ unit tests. When enabled, the generated
 # build file (e.g. Makefile) will have a target "cpptest".

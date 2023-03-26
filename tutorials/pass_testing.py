@@ -18,7 +18,15 @@ def example():
     weight = relay.var("weight", shape=(64, 64, 3, 3))
     x = relay.var("x", relay.TensorType((1, 64, 56, 56), "float32"))
     conv = relay.nn.conv2d(x, weight)
-    drop = relay.nn.dropout(conv)
+    linear = relay.nn.dense(conv, c)
+    drop = relay.nn.dropout(linear)
     
 
-    return relay.Function([x, weight], z2)
+    return relay.Function([x, weight], drop)
+
+
+f = example()
+mod= tvm.IRModule.from_expr(f)
+
+print(mod)
+

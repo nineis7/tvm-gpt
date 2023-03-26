@@ -189,3 +189,46 @@ sudo git commit -m "update"
 git push -u origin main
 git push -u origin main
 exit
+ls
+cd ..
+ls
+cmake --version
+git checkout tags/papi-6-0-0-1-t -b <branch>
+sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'
+sudo apt update
+sudo apt install build-essential libtool autoconf unzip wget
+sudo apt remove --purge --auto-remove cmake
+version=3.24
+build=1
+mkdir ~/temp
+cd ~/temp
+wget https://cmake.org/files/v$version/cmake-$version.$build.tar.gz
+tar -xzvf cmake-$version.$build.tar.gz
+cd cmake-$version.$build/
+./bootstrap
+make -j$(nproc)
+sudo make install
+vi /etc/modprobe.d/nvidia-kernel-common.conf
+pip install vim
+apt-get install vim
+sudo apt-get install vim
+vim /etc/modprobe.d/nvidia-kernel-common.conf
+sudo vim /etc/modprobe.d/nvidia-kernel-common.conf
+sudo rm -rf /etc/modprobe.d/nvidia-kernel-common.conf
+exit
+ls
+cd ..
+ls
+exit
+ls
+cd ..
+ls
+cd ..
+ls
+cd gpt-grontend/
+ls
+exit
+ls
+cd ..
+ls
+exit

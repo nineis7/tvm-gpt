@@ -11,28 +11,28 @@
 			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/CMakeFiles/project_libbacktrace-complete.rule"
 		},
 		{
+			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-build.rule"
+		},
+		{
+			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-checkout.rule"
+		},
+		{
+			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-configure.rule"
+		},
+		{
+			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-download.rule"
+		},
+		{
 			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-install.rule"
 		},
 		{
 			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-mkdir.rule"
 		},
 		{
-			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-download.rule"
-		},
-		{
-			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-update.rule"
-		},
-		{
 			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-patch.rule"
 		},
 		{
-			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-configure.rule"
-		},
-		{
-			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-build.rule"
-		},
-		{
-			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-checkout.rule"
+			"file" : "/home/nineis/ws/gpt-frontend/tvm/build/libbacktrace/src/project_libbacktrace-stamp/project_libbacktrace-update.rule"
 		}
 	],
 	"target" : 

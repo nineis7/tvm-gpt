@@ -357,6 +357,7 @@ if ${TTY}; then
 fi
 
 DOCKER_FLAGS+=( --privileged=true )
+# DOCKER_FLAGS+=( --mount "$pwd" )
 
 # Setup the docker name and the hostname inside the container
 if [[ ! -z "${CONTAINER_NAME}" ]]; then

@@ -123,40 +123,23 @@ mod = seq(mod)
 # print(mod)
 
 #######################  experiment   fp16  ######
-target = "cuda"
+# target = "cuda"
+target = "llvm"
 with tvm.transform.PassContext(opt_level=3):
     lib = tvm.relay.build(mod, target=target, params=params)
     
-# dev = tvm.device(str(target), 0)
-# module = graph_executor.GraphModule(lib["default"](dev))
-# tt_c = tt_c.cpu()###################################################
-# module.set_input("input_ids", tt_c)
-# module.set_input(**params)
-# module.run()
+dev = tvm.device(str(target), 0)
+module = graph_executor.GraphModule(lib["default"](dev))
+tt_c = tt_c.cpu()###################################################
+module.set_input("input_ids", tt_c)
+module.set_input(**params)
+module.run()
 
-# start_time = time.time()
-# for i in range(100):
-#     print("info16 loop i: ", i)
-#     module.run()
-# torch.cuda.synchronize()
+start_time = time.time()
+for i in range(100):
+    print("info16 loop i: ", i)
+    module.run()
+torch.cuda.synchronize()
 
-# end_time = time.time()
-# print("耗时: {:.2f}秒".format(end_time - start_time))
-
-from tvm.relay.testing import mlp
-from tvm.runtime import profiler_vm
-
-target = "llvm"
-dev = tvm.cpu()
-mod, params = mlp.get_workload(1)
-
-exe = tvm.relay.vm.compile(mod, target, params=params)
-vm = profiler_vm.VirtualMachineProfiler(exe, dev)
-
-data = tvm.nd.array(np.random.rand(1, 1, 28, 28).astype("float32"), device=dev)
-report = vm.profile(
-    [data],
-    func_name="main",
-    collectors=[tvm.runtime.profiling.PAPIMetricCollector()],
-)
-print(report)
+end_time = time.time()
+print("耗时: {:.2f}秒".format(end_time - start_time))
