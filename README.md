@@ -27,6 +27,7 @@ make -j8
 ```
 
 #### build with PAPI (cmake has been updated to 3.24.1 in cmake_source.sh)
+*PAPI使用参见[PAPI profiling.md]一文*
 ```
 # Method 1：在docker/install中将ubuntu_install_papi.sh添加进build.sh中
 # 需要修改export PAPI_CUDA_ROOT=/usr/local/cuda 为cuda->该文件夹下cuda版本号

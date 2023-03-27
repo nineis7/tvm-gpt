@@ -1,0 +1,30 @@
+import tvm
+from tvm import relay
+import tensorflow as tf
+import numpy as np
+
+def main():
+    debug_graph = tf.Graph()
+    with debug_graph.as_default():
+        input_1 = tf.compat.v1.placeholder(dtype=tf.int32, shape=[None], name='input_1')
+        result = tf.nn.relu(input_1, name='result')
+
+    layout = "NHWC"
+    mod, params = relay.frontend.from_tensorflow(
+        debug_graph.as_graph_def(),
+        layout=layout,
+        outputs=['result']
+    )
+
+    target = "cuda"
+    context = tvm.cuda()
+
+    exe = relay.vm.compile(mod, target=target, params=params)
+    des_vm = tvm.runtime.vm.VirtualMachine(exe, context)
+    # des_vm.init(context)
+    in_data = np.array([-1, 2, -3, 4, -5], dtype=np.int32)
+    ret = des_vm.run(in_data)
+    print('result: ', ret)
+
+if __name__ == '__main__':
+    main()
